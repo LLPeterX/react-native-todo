@@ -1,12 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import NavBar from './src/NavBar';
+import AddTodo from './src/AddTodo';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <NavBar title="Список задач"/>
+      <AddTodo />
+      {/* <Text style={styles.text}>Привет, React Native!</Text> */}
     </View>
   );
 }
@@ -14,8 +17,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    flexDirection: 'column'
   },
+  text: {
+    fontSize: 26
+  }
 });
