@@ -1,13 +1,17 @@
 // блок добавления задачи
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 
 export default function AddTodo({ onAddTodo }) {
   let [value, setValue] = useState("");
 
   const pressHandler = () => {
-    if (value.length > 0) {
+    if (value.trim().length > 0) {
       onAddTodo(value);
+      setValue("");
+    } else {
+      Alert.alert('Заполните поле ввода');
+      console.log('Call Alert');
     }
   };
 
@@ -15,7 +19,7 @@ export default function AddTodo({ onAddTodo }) {
     <View style={styles.container}>
       <Text>Новая задача</Text>
       <View style={styles.block}>
-        <TextInput style={styles.input} value={value} onChangeText={(text) => setValue(text)} />
+        <TextInput style={styles.input} value={value} onChangeText={(text) => setValue(text)} placeholder="Введите новую задачу"/>
         <Button title="+" style={styles.button} onPress={pressHandler} />
 
       </View>
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: "2px",
     borderColor: '#ccc',
-    fontSize: 20,
+    fontSize: 16,
     marginRight: "10px"
   },
   button: {
