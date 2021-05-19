@@ -29,7 +29,7 @@ export default function AddTodo({ onAddTodo }) {
 
 const styles = StyleSheet.create({
   container: {
-    position: "fixed",
+    //position: "fixed",
     width: "100%",
     borderStyle: 'solid',
     borderWidth: "2px",
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     borderRadius: "6px",
     fontSize: 20,
     padding: "4px",
-    bottom: "5px",
+    //bottom: "5px",
     justifyContent: "space-between",
     alignItems: "center"
   },

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import NavBar from './src/NavBar';
 import AddTodo from './src/AddTodo';
 import Todo from './src/Todo';
@@ -14,14 +14,18 @@ export default function App() {
     };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
+
+  //const renderTodo = (todoItem) => <Todo todo={todoItem} />;
   
   return (
     <View style={styles.container}>
       <NavBar title="Список задач"/>
-      <View style={styles.list}>
-        {todos.map(todoItem => <Todo key={todoItem.id} todo={todoItem} />  )}
-      </View>
       <AddTodo onAddTodo={addTodo}/>
+      <FlatList style={styles.list}
+         data={todos}
+         renderItem={({ item }) => <Todo todo={item} />}
+         keyExtractor={item=>item.id}
+      />
     </View>
   );
 }
@@ -34,6 +38,7 @@ const styles = StyleSheet.create({
   },
   list: {
     width: '100%',
+    height: '80%',
     marginLeft: '4px',
     marginRight: '4px'
   }
