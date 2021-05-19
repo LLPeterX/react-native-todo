@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import NavBar from './src/NavBar';
 import AddTodo from './src/AddTodo';
+import Todo from './src/Todo';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (text) => {
     const newTodo = {
-      id: Date.now().toString(),
+      id: Date.now().toString(), // будем использовать как key, а он должен быть строкой
       text
     };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
@@ -17,8 +18,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavBar title="Список задач"/>
-      <View>
-        {todos.map(t => <Text key={t.id}>{t.text}</Text>  )}
+      <View style={styles.list}>
+        {todos.map(todoItem => <Todo key={todoItem.id} todo={todoItem} />  )}
       </View>
       <AddTodo onAddTodo={addTodo}/>
     </View>
@@ -31,7 +32,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column'
   },
-  text: {
-    fontSize: 26
+  list: {
+    width: '100%',
+    marginLeft: '4px',
+    marginRight: '4px'
   }
 });

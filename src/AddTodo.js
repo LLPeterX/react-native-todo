@@ -1,19 +1,22 @@
 // блок добавления задачи
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-export default function AddTodo({onAddTodo}) {
+export default function AddTodo({ onAddTodo }) {
+  let [value, setValue] = useState("");
 
   const pressHandler = () => {
-    onAddTodo('test');
+    if (value.length > 0) {
+      onAddTodo(value);
+    }
   };
 
   return (
     <View style={styles.container}>
       <Text>Новая задача</Text>
       <View style={styles.block}>
-        <TextInput style={styles.input} />
-        <Button title="+" style={styles.button} onPress={pressHandler}/>
+        <TextInput style={styles.input} value={value} onChangeText={(text) => setValue(text)} />
+        <Button title="+" style={styles.button} onPress={pressHandler} />
 
       </View>
     </View>
