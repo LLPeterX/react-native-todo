@@ -2,13 +2,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-export default function AddTodo(props) {
+export default function AddTodo({onAddTodo}) {
+
+  const pressHandler = () => {
+    onAddTodo('test');
+  };
+
   return (
     <View style={styles.container}>
       <Text>Новая задача</Text>
       <View style={styles.block}>
         <TextInput style={styles.input} />
-        <Button title="+" style={styles.button} />
+        <Button title="+" style={styles.button} onPress={pressHandler}/>
 
       </View>
     </View>
@@ -17,19 +22,21 @@ export default function AddTodo(props) {
 
 const styles = StyleSheet.create({
   container: {
+    position: "fixed",
     width: "100%",
     borderStyle: 'solid',
     borderWidth: "2px",
     borderColor: 'green',
+    borderRadius: "6px",
     fontSize: 20,
-    padding: "10px",
-    margin: "5px"
+    padding: "4px",
+    bottom: "5px",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   block: {
     flexDirection: 'row',
     width: "100%",
-    padding: 0,
-    margin: 0
   },
   input: {
     width: "90%",

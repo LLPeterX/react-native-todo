@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function NavBar(props) {
   return (
     <View style={styles.navbar}>
-      <Text style={styles.text}>{props.title}</Text>
+      <Text style={styles.text}>Список задач</Text>
     </View>
   );
 }
@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#f0f257',
-    fontSize: 20,
+    fontSize: 20
   }
 });
