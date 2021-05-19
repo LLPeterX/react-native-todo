@@ -3,15 +3,17 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 
 export default function AddTodo({ onAddTodo }) {
+  // state to hold TextInput value
   let [value, setValue] = useState("");
 
+  // Button press handler
   const pressHandler = () => {
+    // if input string is not empty then add in array todos by calling functions from props
     if (value.trim().length > 0) {
       onAddTodo(value);
       setValue("");
     } else {
       Alert.alert('Заполните поле ввода');
-      console.log('Call Alert');
     }
   };
 
@@ -29,7 +31,6 @@ export default function AddTodo({ onAddTodo }) {
 
 const styles = StyleSheet.create({
   container: {
-    //position: "fixed",
     width: "100%",
     borderStyle: 'solid',
     borderWidth: "2px",
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
     borderRadius: "6px",
     fontSize: 20,
     padding: "4px",
-    //bottom: "5px",
     justifyContent: "space-between",
     alignItems: "center"
   },

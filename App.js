@@ -5,17 +5,18 @@ import AddTodo from './src/AddTodo';
 import Todo from './src/Todo';
 
 export default function App() {
+  // state to hold array of todos
   const [todos, setTodos] = useState([]);
 
+  // handler to add todo into array
   const addTodo = (text) => {
     const newTodo = {
-      id: Date.now().toString(), // будем использовать как key, а он должен быть строкой
-      text
+      id: Date.now().toString(), // must be string (used as key value)
+      text // text of task
     };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
-  //const renderTodo = (todoItem) => <Todo todo={todoItem} />;
   
   return (
     <View style={styles.container}>
