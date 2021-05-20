@@ -17,14 +17,15 @@ export default function App() {
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
-  
+  const deleteTodo = (id) => setTodos((prevTodos) => prevTodos.filter(item=>item.id != id));
+    
   return (
     <View style={styles.container}>
       <NavBar title="Список задач"/>
       <AddTodo onAddTodo={addTodo}/>
       <FlatList style={styles.list}
          data={todos}
-         renderItem={({ item }) => <Todo todo={item} />}
+         renderItem={({ item }) => <Todo todo={item} onDelete={deleteTodo}/>}
          keyExtractor={item=>item.id}
       />
     </View>

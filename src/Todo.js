@@ -2,13 +2,23 @@
 Displays one todo item
 */
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-export default function Todo({todo}) {
+export default function Todo({ todo, onDelete }) {
+  const pressHandler = () => {
+    console.log(`Press ${todo.id} - ${todo.text}`)
+  };
+  
+  //const deleteHandler = () => onDelete(todo.id);
+  
   return (
-    <View style={styles.todo}>
-      <Text>{todo.text}</Text>
-    </View>
+    <TouchableOpacity activeOpacity={0.5} 
+    onLongPress={onDelete.bind(null, todo.id)}
+    onPress={pressHandler}>
+      <View style={styles.todo}>
+        <Text>{todo.text}</Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
