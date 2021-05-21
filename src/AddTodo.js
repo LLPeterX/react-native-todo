@@ -13,19 +13,22 @@ export default function AddTodo({ onAddTodo }) {
       onAddTodo(value);
       setValue("");
     } else {
-      Alert.alert('Заполните поле ввода');
+      Alert.alert('Ошибка','Заполните поле ввода');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text>Новая задача</Text>
+      <Text style={styles.title}>Новая задача</Text>
       <View style={styles.block}>
         <TextInput 
           style={styles.input} 
           value={value} 
           onChangeText={(text) => setValue(text)} 
-          placeholder="Введите здесь имя новой задачи"/>
+          placeholder="Введите здесь имя новой задачи"
+          autoCorrect='none'
+          autoCapitalize='none'
+          />
         <Button title=" + " onPress={pressHandler} />
 
       </View>
@@ -53,6 +56,10 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     fontSize: 16,
-    marginRight: "10px"
+    marginRight: 10,
+    clearButtonMode: 'while-editing'
   },
+  title: {
+    fontWeight: 'bold'
+  }
 });

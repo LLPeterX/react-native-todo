@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function NavBar({title}) {
-  console.log('navbar title=',title);
   return (
     <View style={styles.navbar}>
       <Text style={styles.text}>{title}</Text>
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 4,
     justifyContent: 'center',
-    //flexDirection: 'column'
+    
   },
   text: {
     color: '#fff',
