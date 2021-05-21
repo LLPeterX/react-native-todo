@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function NavBar(props) {
+export default function NavBar({title}) {
+  console.log('navbar title=',title);
   return (
     <View style={styles.navbar}>
-      <Text style={styles.text}>Список задач</Text>
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 }
@@ -14,13 +15,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#050780',
     alignItems: 'center',
     width: "100%",
-    height: 80,
-    marginBottom: "10px"
-    //justifyContent: 'center',
+    height: 40,
+    marginBottom: "4px",
+    justifyContent: 'center',
     //flexDirection: 'column'
   },
   text: {
-    color: '#f0f257',
+    color: '#fff',
     fontSize: 20
   }
 });

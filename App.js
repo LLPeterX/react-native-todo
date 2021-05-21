@@ -12,16 +12,17 @@ export default function App() {
   const addTodo = (text) => {
     const newTodo = {
       id: Date.now().toString(), // must be string (used as key value)
-      text // text of task
+      text: text // text of task
     };
     setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
+  //handler to remove task by id
   const deleteTodo = (id) => setTodos((prevTodos) => prevTodos.filter(item=>item.id != id));
     
   return (
     <View style={styles.container}>
-      <NavBar title="Список задач"/>
+      <NavBar title="Список моих задач"/>
       <AddTodo onAddTodo={addTodo}/>
       <FlatList style={styles.list}
          data={todos}

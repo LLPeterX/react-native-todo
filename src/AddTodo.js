@@ -21,8 +21,12 @@ export default function AddTodo({ onAddTodo }) {
     <View style={styles.container}>
       <Text>Новая задача</Text>
       <View style={styles.block}>
-        <TextInput style={styles.input} value={value} onChangeText={(text) => setValue(text)} placeholder="Введите новую задачу"/>
-        <Button title="+" style={styles.button} onPress={pressHandler} />
+        <TextInput 
+          style={styles.input} 
+          value={value} 
+          onChangeText={(text) => setValue(text)} 
+          placeholder="Введите здесь имя новой задачи"/>
+        <Button title="+" onPress={pressHandler} />
 
       </View>
     </View>
@@ -38,22 +42,17 @@ const styles = StyleSheet.create({
     borderRadius: "6px",
     fontSize: 20,
     padding: "4px",
-    justifyContent: "space-between",
+    
     alignItems: "center"
   },
   block: {
     flexDirection: 'row',
+    justifyContent: "space-between",
     width: "100%",
   },
   input: {
-    width: "90%",
-    borderStyle: 'solid',
-    borderWidth: "2px",
-    borderColor: '#ccc',
+    width: "100%",
     fontSize: 16,
     marginRight: "10px"
   },
-  button: {
-    width: "10%"
-  }
 });
