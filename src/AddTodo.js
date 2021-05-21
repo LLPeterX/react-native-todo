@@ -19,18 +19,17 @@ export default function AddTodo({ onAddTodo }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Новая задача</Text>
+      {/* <Text style={styles.title}>Новая задача</Text> */}
       <View style={styles.block}>
         <TextInput 
           style={styles.input} 
           value={value} 
           onChangeText={(text) => setValue(text)} 
-          placeholder="Введите здесь имя новой задачи"
-          autoCorrect='none'
+          placeholder="Название новой задачи"
           autoCapitalize='none'
+          clearButtonMode='while-editing'
           />
         <Button title=" + " onPress={pressHandler} />
-
       </View>
     </View>
   );
@@ -40,12 +39,11 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     borderStyle: 'solid',
-    borderWidth: "2px",
+    borderWidth: 2,
     borderColor: 'green',
-    borderRadius: "6px",
+    borderRadius: 5,
     fontSize: 20,
-    padding: "4px",
-    
+    padding: 4,
     alignItems: "center"
   },
   block: {
@@ -54,10 +52,10 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   input: {
-    width: "100%",
+    width: "90%",
     fontSize: 16,
-    marginRight: 10,
-    clearButtonMode: 'while-editing'
+    marginRight: 4
+    
   },
   title: {
     fontWeight: 'bold'

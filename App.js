@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
-import NavBar from './src/NavBar';
+import NavBar from './src/Navbar';
 import AddTodo from './src/AddTodo';
 import Todo from './src/Todo';
 

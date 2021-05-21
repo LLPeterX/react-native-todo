@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: 'center',
     flexDirection: 'row',
-    padding: "15px",
+    padding: 10,
     borderWidth: 1,
     borderColor: '#eee',
-    borderRadius: '5px'
+    borderRadius: 5
   },
   text: {
-    fontSize: 26
+    fontSize: 20
   }
 });
