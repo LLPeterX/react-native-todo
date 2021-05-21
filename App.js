@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import NavBar from './src/NavBar';
 import AddTodo from './src/AddTodo';
 import Todo from './src/Todo';
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   list: {
     width: '100%',
     height: '80%',
-    marginLeft: '4px',
-    marginRight: '4px'
+    marginLeft: 4,
+    marginRight: 4
   }
 });

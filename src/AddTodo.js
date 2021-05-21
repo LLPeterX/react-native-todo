@@ -26,7 +26,7 @@ export default function AddTodo({ onAddTodo }) {
           value={value} 
           onChangeText={(text) => setValue(text)} 
           placeholder="Введите здесь имя новой задачи"/>
-        <Button title="+" onPress={pressHandler} />
+        <Button title=" + " onPress={pressHandler} />
 
       </View>
     </View>

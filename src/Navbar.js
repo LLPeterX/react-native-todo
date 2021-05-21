@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: "100%",
     height: 40,
-    marginBottom: "4px",
+    marginBottom: 4,
     justifyContent: 'center',
     //flexDirection: 'column'
   },
