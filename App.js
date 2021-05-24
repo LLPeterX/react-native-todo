@@ -31,17 +31,9 @@ export default function App() {
   const deleteTodo = (id) => setTodos((prevTodos) => prevTodos.filter(item => item.id != id));
 
   return (
-<<<<<<< Updated upstream
     <View style={styles.container}>
       <NavBar title="Список моих задач"/>
       <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo}/>
-=======
-    <View>
-      <NavBar title={Constants.manifest.name} />
-      <View style={styles.container}>
-        <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
-      </View>
->>>>>>> Stashed changes
     </View>
   );
 }

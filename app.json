@@ -1,10 +1,6 @@
 {
   "expo": {
-<<<<<<< Updated upstream
     "name": "Список моих задач",
-=======
-    "name": "Todo list",
->>>>>>> Stashed changes
     "slug": "todo",
     "version": "1.0.0",
     "orientation": "portrait",
