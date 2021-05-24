@@ -1,14 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 
-export default function TodoScreen({ todo, onBack }) {
+export default function TodoScreen({ todo, onBack, onDelete }) {
+  const removeTodo = () => {
+    onDelete(todo.id);
+    onBack();
+  }
   return (
     <View style={styles.container}>
       <Text>{'id:' + todo.id}</Text>
       <Text>{todo.text}</Text>
       <View style={styles.block}>
-        <Button title="Назад" onPress={onBack}/>
-        <Button title="Редактировать" />
+        <View style={styles.button}><Button title="< Назад" color='#757575' onPress={onBack}/></View>
+        <View style={styles.button}><Button title="Изменить" color='#00AA00' /></View>
+        <View style={styles.button}><Button title="Удалить" color='#e53935' onPress={removeTodo}/></View>
       </View>
     </View>
   );
@@ -32,5 +37,8 @@ const styles = StyleSheet.create({
     padding: 4,
     marginTop: 20
   },
+  button: {
+    width: '30%'
+  }
 
 });

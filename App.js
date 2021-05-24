@@ -17,21 +17,22 @@ export default function App() {
       id: Date.now().toString(), // must be string (used as key value)
       text // text of todo
     };
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    //setTodos((prevTodos) => [...prevTodos, newTodo]);
+    setTodos([...todos, newTodo ]);
   };
 
   //handler to remove task by id
   const deleteTodo = (id) => setTodos((prevTodos) => prevTodos.filter(item => item.id != id));
   
   // open TodoScreen
-  const openTodo = (id) => setTodoId(id);
+  //const openTodo = (id) => setTodoId(id);
   // content of current screen
-  let screenContent = <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} openTodo={openTodo}/>;
+  let screenContent = <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} openTodo={setTodoId}/>;
   // more simpe without openTodo():
   //let screenContent = <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} openTodo={(id)=>{setTodoId(id)}}/>;
   if(todoId) {
     let selectedTodo = todos.find(item =>item.id === todoId);
-    if(selectedTodo) screenContent = <TodoScreen todo={selectedTodo} onBack={()=>setTodoId(null)}/>;
+    if(selectedTodo) screenContent = <TodoScreen todo={selectedTodo} onBack={()=>setTodoId(null)} onDelete={deleteTodo}/>;
   }
 
   return (
