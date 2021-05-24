@@ -1,19 +1,9 @@
-<<<<<<< Updated upstream
 import React, {useState} from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import NavBar from './src/components/Navbar';
 import MainScreen from './src/screens/MainScreen';
 // import AddTodo from './src/AddTodo';
 // import Todo from './src/Todo';
-=======
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import MainScreen from './src/screens/MainScreen'
-//import TodoScreen from './src/screens/TodoScreen'
-import NavBar from './src/components/Navbar'
-import Constants from 'expo-constants';
-
->>>>>>> Stashed changes
 
 export default function App() {
   // state to hold array of todos
