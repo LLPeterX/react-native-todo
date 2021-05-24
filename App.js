@@ -1,14 +1,23 @@
+<<<<<<< Updated upstream
 import React, {useState} from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import NavBar from './src/components/Navbar';
 import MainScreen from './src/screens/MainScreen';
 // import AddTodo from './src/AddTodo';
 // import Todo from './src/Todo';
+=======
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import MainScreen from './src/screens/MainScreen'
+//import TodoScreen from './src/screens/TodoScreen'
+import NavBar from './src/components/Navbar'
+import Constants from 'expo-constants';
+
+>>>>>>> Stashed changes
 
 export default function App() {
   // state to hold array of todos
   const [todos, setTodos] = useState([]);
-
   // handler to add todo into array
   const addTodo = (text) => {
     const newTodo = {
@@ -19,12 +28,20 @@ export default function App() {
   };
 
   //handler to remove task by id
-  const deleteTodo = (id) => setTodos((prevTodos) => prevTodos.filter(item=>item.id != id));
-    
+  const deleteTodo = (id) => setTodos((prevTodos) => prevTodos.filter(item => item.id != id));
+
   return (
+<<<<<<< Updated upstream
     <View style={styles.container}>
       <NavBar title="Список моих задач"/>
       <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo}/>
+=======
+    <View>
+      <NavBar title={Constants.manifest.name} />
+      <View style={styles.container}>
+        <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
+      </View>
+>>>>>>> Stashed changes
     </View>
   );
 }
@@ -32,13 +49,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    flexDirection: 'column'
-  },
-  list: {
-    width: '100%',
-    height: '80%',
-    marginLeft: 4,
-    marginRight: 4
+    paddingHorizontal: 20,
+    paddingVertical: 20
   }
 });
