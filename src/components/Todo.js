@@ -4,16 +4,16 @@ Displays one todo item of list
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-export default function Todo({ todo, onDelete }) {
+export default function Todo({ todo, onOpen, onDelete }) {
   
-  const pressHandler = () => {
-    console.log(`Press ${todo.id} - ${todo.text}`)
-  };
+  // const pressHandler = () => {
+  //   console.log(`Press ${todo.id} - ${todo.text}`)
+  // };
   
   return (
      <TouchableOpacity activeOpacity={0.5} 
     onLongPress={onDelete.bind(null, todo.id)}
-    onPress={pressHandler}>
+    onPress={onOpen.bind(null,todo.id)}>
       <View style={styles.todo}>
         <Text>{todo.text}</Text>
       </View>
