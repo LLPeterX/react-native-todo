@@ -31,7 +31,7 @@ export default function App() {
   //let screenContent = <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} openTodo={(id)=>{setTodoId(id)}}/>;
   if(todoId) {
     let selectedTodo = todos.find(item =>item.id === todoId);
-    if(selectedTodo) screenContent = <TodoScreen todo={selectedTodo}/>;
+    if(selectedTodo) screenContent = <TodoScreen todo={selectedTodo} onBack={()=>setTodoId(null)}/>;
   }
 
   return (
