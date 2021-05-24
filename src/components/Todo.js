@@ -6,7 +6,6 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function Todo({ todo, onDelete }) {
   
-  console.log('show todo',todo);
   const pressHandler = () => {
     console.log(`Press ${todo.id} - ${todo.text}`)
   };

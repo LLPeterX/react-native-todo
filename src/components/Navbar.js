@@ -11,7 +11,7 @@ export default function NavBar({title}) {
 
 const styles = StyleSheet.create({
   navbar: {
-    backgroundColor: '#050780',
+    backgroundColor: '#0a13bd',
     alignItems: 'center',
     width: "100%",
     height: 40,

@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <NavBar title="Список моих задач"/>
+      <NavBar title="Список моих задач!"/>
       <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo}/>
     </View>
   );

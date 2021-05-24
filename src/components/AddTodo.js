@@ -13,50 +13,49 @@ export default function AddTodo({ onAddTodo }) {
       onAddTodo(value);
       setValue("");
     } else {
-      Alert.alert('Ошибка','Заполните поле ввода');
+      Alert.alert('Ошибка', 'Заполните поле ввода');
     }
   };
 
   return (
-    <View style={styles.container}>
       <View style={styles.block}>
-        <TextInput 
-          style={styles.input} 
-          value={value} 
-          onChangeText={(text) => setValue(text)} 
+        <TextInput
+          style={styles.input}
+          value={value}
+          onChangeText={(text) => setValue(text)}
           placeholder="Название новой задачи"
           autoCapitalize='none'
           clearButtonMode='while-editing'
-          />
+        />
         <Button title=" + " onPress={pressHandler} />
       </View>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderColor: 'green',
-    borderRadius: 5,
-    fontSize: 20,
-    padding: 4,
-    alignItems: "center",
-    height: 54
-  },
+  // container: {
+  //   width: "100%",
+  //   borderStyle: 'solid',
+  //   borderWidth: 2,
+  //   borderColor: 'green',
+  //   borderRadius: 5,
+  //   fontSize: 20,
+  //   padding: 4,
+  //   alignItems: "center",
+  //   height: 54
+  // },
   block: {
+    width: "100%",
     flexDirection: 'row',
     justifyContent: "space-between",
-    paddingRight: 10,
-    paddingLeft: 10
+    borderBottomWidth: 2,
+    borderBottomColor: '#0a13bd',
+    padding: 4
   },
   input: {
     width: "90%",
     fontSize: 16,
-    marginRight: 4
-    
+    marginRight: 4,
   },
   title: {
     fontWeight: 'bold'
