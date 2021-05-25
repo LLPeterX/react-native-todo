@@ -3,6 +3,7 @@ Displays one todo item of list
 */
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {THEME} from '../theme';
 
 export default function Todo({ todo, onOpen, onDelete }) {
   
@@ -31,12 +32,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: THEME.GRAY_COLOR,
     borderRadius: 5
   },
   text: {
     fontSize: 20,
-    color: '#000'
-    
+    color: THEME.TEXT_COLOR
   }
 });

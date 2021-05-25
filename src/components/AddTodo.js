@@ -33,17 +33,6 @@ export default function AddTodo({ onAddTodo }) {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   width: "100%",
-  //   borderStyle: 'solid',
-  //   borderWidth: 2,
-  //   borderColor: 'green',
-  //   borderRadius: 5,
-  //   fontSize: 20,
-  //   padding: 4,
-  //   alignItems: "center",
-  //   height: 54
-  // },
   block: {
     width: "100%",
     flexDirection: 'row',

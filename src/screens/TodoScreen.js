@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
+import {THEME} from '../theme';
 
 export default function TodoScreen({ todo, onBack, onDelete }) {
   const removeTodo = () => {
@@ -11,9 +12,9 @@ export default function TodoScreen({ todo, onBack, onDelete }) {
       <Text>{'id:' + todo.id}</Text>
       <Text>{todo.text}</Text>
       <View style={styles.block}>
-        <View style={styles.button}><Button title="< Назад" color='#757575' onPress={onBack}/></View>
-        <View style={styles.button}><Button title="Изменить" color='#00AA00' /></View>
-        <View style={styles.button}><Button title="Удалить" color='#e53935' onPress={removeTodo}/></View>
+        <View style={styles.button}><Button title="< Назад" color={THEME.GRAY_COLOR} onPress={onBack}/></View>
+        <View style={styles.button}><Button title="Изменить" color={THEME.GREEN_COLOR} /></View>
+        <View style={styles.button}><Button title="Удалить" color={THEME.DANGER_COLOR} onPress={removeTodo}/></View>
       </View>
     </View>
   );
@@ -21,14 +22,14 @@ export default function TodoScreen({ todo, onBack, onDelete }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     height: "50%",
     flexDirection: 'column',
     alignItems: 'flex-start'
   },
   title: {
     fontWeight: 'bold',
-    color: '#000'
+    color: THEME.TEXT_COLOR
   },
   block: {
     width: "100%",
