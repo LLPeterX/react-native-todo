@@ -1,6 +1,7 @@
 // блок добавления задачи
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
+import { THEME } from '../theme';
 
 export default function AddTodo({ onAddTodo }) {
   // state to hold TextInput value
@@ -37,9 +38,18 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: 'row',
     justifyContent: "space-between",
-    borderBottomWidth: 2,
-    borderBottomColor: '#0a13bd',
-    padding: 4
+    // borderBottomWidth: 2,
+    // borderBottomColor: '#0a13bd',
+    padding: 16,
+    //shadow
+    shadowColor: '#000',
+    shadowRadius: 2,
+    shadowOpacity: 0.3,
+    shadowOffset: {width: 2, height: 2},
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginBottom: 10,
+    elevation: 8 // shadow type for Android
   },
   input: {
     width: "90%",

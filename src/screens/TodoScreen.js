@@ -9,12 +9,11 @@ export default function TodoScreen({ todo, onBack, onDelete }) {
   }
   return (
     <View style={styles.container}>
-      <Text>{'id:' + todo.id}</Text>
-      <Text>{todo.text}</Text>
+      <Text style={styles.text}>{todo.text}</Text>
       <View style={styles.block}>
         <View style={styles.button}><Button title="< Назад" color={THEME.GRAY_COLOR} onPress={onBack}/></View>
-        <View style={styles.button}><Button title="Изменить" color={THEME.GREEN_COLOR} /></View>
-        <View style={styles.button}><Button title="Удалить" color={THEME.DANGER_COLOR} onPress={removeTodo}/></View>
+        <View style={styles.button}><Button title="Изм." color={THEME.GREEN_COLOR} /></View>
+        <View style={styles.button}><Button title=" X " color={THEME.DANGER_COLOR} onPress={removeTodo}/></View>
       </View>
     </View>
   );
@@ -40,6 +39,9 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '30%'
+  },
+  text: {
+    fontSize: 16
   }
 
 });
