@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, View, Text, Button, Alert } from 'react-native';
+import { EditModal } from '../components/EditModal';
 import { THEME } from '../theme';
 
 export default function TodoScreen({ todo, onBack, onDelete }) {
+  let [modalVisible, setModalVisible] = useState(false);
+
   const removeTodo = () => {
     Alert.alert('Удаление', // header
     'Вы желаете удалить эту задачу?', // text
@@ -24,16 +27,18 @@ export default function TodoScreen({ todo, onBack, onDelete }) {
         cancelable: true
       }
     );
-    // onDelete(todo.id);
-    // onBack();
   }
 
   return (
     <View style={styles.container}>
+      <EditModal 
+        visible={modalVisible} 
+        onClose={()=>setModalVisible(false)}  
+      />
       <Text style={styles.text}>{todo.text}</Text>
       <View style={styles.block}>
         <View style={styles.button}><Button title="< Назад" color={THEME.GRAY_COLOR} onPress={onBack} /></View>
-        <View style={styles.button}><Button title="Изм." color={THEME.GREEN_COLOR} /></View>
+        <View style={styles.button}><Button title="Изм." color={THEME.GREEN_COLOR} onPress={()=>setModalVisible(true)}/></View>
         <View style={styles.button}><Button title=" X " color={THEME.DANGER_COLOR} onPress={removeTodo} /></View>
       </View>
     </View>
@@ -43,7 +48,7 @@ export default function TodoScreen({ todo, onBack, onDelete }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: "50%",
+    // height: "50%",
     flexDirection: 'column',
     alignItems: 'flex-start'
   },
