@@ -21,8 +21,22 @@ export default function App() {
     setTodos([...todos, newTodo ]);
   };
 
+  
   //handler to remove task by id
   const deleteTodo = (id) => setTodos((prevTodos) => prevTodos.filter(item => item.id != id));
+
+  // change text of todo
+  const changeTodo = (id, text) => {
+    console.log(` >> update: id=${id} text=${text}`);
+    setTodos(old => 
+      old.map(item => {
+        if(item.id === id) {
+          item.text = text;
+        }
+        return item;
+      })
+    );
+  }
   
   // open TodoScreen
   //const openTodo = (id) => setTodoId(id);
@@ -32,7 +46,11 @@ export default function App() {
   //let screenContent = <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} openTodo={(id)=>{setTodoId(id)}}/>;
   if(todoId) {
     let selectedTodo = todos.find(item =>item.id === todoId);
-    if(selectedTodo) screenContent = <TodoScreen todo={selectedTodo} onBack={()=>setTodoId(null)} onDelete={deleteTodo}/>;
+    if(selectedTodo) screenContent = <TodoScreen todo={selectedTodo} 
+       onBack={()=>setTodoId(null)} 
+       onDelete={deleteTodo}
+       onSave={changeTodo}
+       />;
   }
 
   return (

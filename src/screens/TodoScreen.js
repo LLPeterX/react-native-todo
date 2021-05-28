@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import { EditModal } from '../components/EditModal';
 import { THEME } from '../theme';
 
-export default function TodoScreen({ todo, onBack, onDelete }) {
+export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
   let [modalVisible, setModalVisible] = useState(false);
 
   const removeTodo = () => {
@@ -29,11 +29,18 @@ export default function TodoScreen({ todo, onBack, onDelete }) {
     );
   }
 
+  const onSaveTodo = (text) => {
+     onSave(todo.id, text);
+     setModalVisible(false);
+  }
+
   return (
     <View style={styles.container}>
       <EditModal 
         visible={modalVisible} 
-        onClose={()=>setModalVisible(false)}  
+        onClose={()=>setModalVisible(false)}
+        onSave={onSaveTodo}
+        value={todo.text}  
       />
       <Text style={styles.text}>{todo.text}</Text>
       <View style={styles.block}>
