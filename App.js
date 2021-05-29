@@ -27,7 +27,6 @@ export default function App() {
 
   // change text of todo
   const changeTodo = (id, text) => {
-    console.log(` >> update: id=${id} text=${text}`);
     setTodos(old => 
       old.map(item => {
         if(item.id === id) {
