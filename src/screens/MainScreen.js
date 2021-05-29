@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     flexDirection: 'column',
-    width: "100%"
+    width: "100%",
+    fontFamily: 'roboto-regular'
   },
   list: {
     width: '100%',

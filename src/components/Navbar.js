@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: THEME.HEADER_COLOR,
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'roboto-bold'
   }
 });

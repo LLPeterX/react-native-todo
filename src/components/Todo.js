@@ -16,7 +16,7 @@ export default function Todo({ todo, onOpen, onDelete }) {
     onLongPress={onDelete.bind(null, todo.id)}
     onPress={onOpen.bind(null,todo.id)}>
       <View style={styles.todo}>
-        <Text>{todo.text}</Text>
+        <Text style={styles.text}>{todo.text}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   text: {
-    fontSize: 20,
-    color: THEME.TEXT_COLOR
+    fontSize: 16,
+    color: THEME.TEXT_COLOR,
+    fontFamily: 'roboto-regular'
   }
 });
