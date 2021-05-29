@@ -27,7 +27,6 @@ export default function App() {
 
   // change text of todo
   const changeTodo = (id, text) => {
-    console.log(` >> update: id=${id} text=${text}`);
     setTodos(old => 
       old.map(item => {
         if(item.id === id) {
@@ -38,8 +37,6 @@ export default function App() {
     );
   }
   
-  // open TodoScreen
-  //const openTodo = (id) => setTodoId(id);
   // content of current screen
   let screenContent = <MainScreen todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} openTodo={setTodoId}/>;
   // more simpe without openTodo():
