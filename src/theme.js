@@ -5,5 +5,6 @@ export const THEME = {
   GREEN_COLOR: '#00AA00',  // color for Edit
   HEADER_BACKGROUND: '#0a13bd', // background color of header
   HEADER_COLOR: 'white',
-  TEXT_COLOR: '#000'
+  TEXT_COLOR: '#000',
+  BUTTON_TEXT_COLOR: 'white'
 };

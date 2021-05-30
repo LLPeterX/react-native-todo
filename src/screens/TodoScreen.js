@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import { EditModal } from '../components/EditModal';
 import { THEME } from '../theme';
 import { AppText } from '../components/ui/AppText'
+import { AppButton } from '../components/ui/AppButton';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
   let [modalVisible, setModalVisible] = useState(false);
 
   const removeTodo = () => {
     Alert.alert('Удаление', // header
-    'Вы желаете удалить эту задачу?', // text
+      'Вы желаете удалить эту задачу?', // text
       // buttons Yes/No
       [
         {
@@ -31,23 +33,28 @@ export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
   }
 
   const onSaveTodo = (text) => {
-     onSave(todo.id, text);
-     setModalVisible(false);
+    onSave(todo.id, text);
+    setModalVisible(false);
   }
 
   return (
     <View style={styles.container}>
-      <EditModal 
-        visible={modalVisible} 
-        onClose={()=>setModalVisible(false)}
+      <EditModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
         onSave={onSaveTodo}
-        value={todo.text}  
+        value={todo.text}
       />
       <AppText style={styles.text}>{todo.text}</AppText>
       <View style={styles.block}>
-        <View style={styles.button}><Button title="< Назад" color={THEME.GRAY_COLOR} onPress={onBack} /></View>
-        <View style={styles.button}><Button title="Изм." color={THEME.GREEN_COLOR} onPress={()=>setModalVisible(true)}/></View>
-        <View style={styles.button}><Button title=" X " color={THEME.DANGER_COLOR} onPress={removeTodo} /></View>
+        <AppButton color={THEME.GRAY_COLOR} onPress={onBack} >
+          <AntDesign name="stepbackward" size={24} /></AppButton>
+        <AppButton color={THEME.GREEN_COLOR} onPress={() => setModalVisible(true)}>
+          <AntDesign name="edit" size={24} />
+        </AppButton>
+        <AppButton color={THEME.DANGER_COLOR} onPress={removeTodo}>
+          <AntDesign name="delete" size={24} />
+        </AppButton>
       </View>
     </View>
   );

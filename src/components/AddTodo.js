@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 import { THEME } from '../theme';
+import { Entypo } from '@expo/vector-icons';
 
 export default function AddTodo({ onAddTodo }) {
   // state to hold TextInput value
@@ -28,7 +29,8 @@ export default function AddTodo({ onAddTodo }) {
           autoCapitalize='none'
           clearButtonMode='while-editing'
         />
-        <Button title=" + " onPress={pressHandler} />
+        {/* <Button title=" + " onPress={pressHandler} /> */}
+        <Entypo.Button name="add-to-list" size={20} onPress={pressHandler}/>
       </View>
   );
 }
@@ -50,8 +52,7 @@ const styles = StyleSheet.create({
     elevation: 8 // shadow type for Android
   },
   input: {
-    width: "90%",
+    width: "85%",
     fontSize: 16,
-    marginRight: 4,
   }
 });
