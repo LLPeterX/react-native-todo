@@ -2,8 +2,9 @@
 Displays one todo item of list
 */
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import {THEME} from '../theme';
+import { AppText } from '../components/ui/AppText'
 
 export default function Todo({ todo, onOpen, onDelete }) {
   
@@ -16,7 +17,7 @@ export default function Todo({ todo, onOpen, onDelete }) {
     onLongPress={onDelete.bind(null, todo.id)}
     onPress={onOpen.bind(null,todo.id)}>
       <View style={styles.todo}>
-        <Text style={styles.text}>{todo.text}</Text>
+        <AppText style={styles.text}>{todo.text}</AppText>
       </View>
     </TouchableOpacity>
   );
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: THEME.TEXT_COLOR,
-    fontFamily: 'roboto-regular'
+    color: THEME.TEXT_COLOR
   }
 });

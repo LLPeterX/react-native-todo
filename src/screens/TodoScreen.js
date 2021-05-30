@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import { EditModal } from '../components/EditModal';
 import { THEME } from '../theme';
+import { AppText } from '../components/ui/AppText'
 
 export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
   let [modalVisible, setModalVisible] = useState(false);
@@ -42,7 +43,7 @@ export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
         onSave={onSaveTodo}
         value={todo.text}  
       />
-      <Text style={styles.text}>{todo.text}</Text>
+      <AppText style={styles.text}>{todo.text}</AppText>
       <View style={styles.block}>
         <View style={styles.button}><Button title="< Назад" color={THEME.GRAY_COLOR} onPress={onBack} /></View>
         <View style={styles.button}><Button title="Изм." color={THEME.GREEN_COLOR} onPress={()=>setModalVisible(true)}/></View>

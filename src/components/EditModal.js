@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
     width: '80%',
     padding: 10,
     borderBottomColor: THEME.GRAY_COLOR,
-    borderBottomWidth: 2,
-    fontFamily: 'roboto-regular'
+    borderBottomWidth: 2
   },
   buttonsBlock: {
     width: "100%",

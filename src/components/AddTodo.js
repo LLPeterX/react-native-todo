@@ -38,8 +38,6 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: 'row',
     justifyContent: "space-between",
-    // borderBottomWidth: 2,
-    // borderBottomColor: '#0a13bd',
     padding: 16,
     //shadow
     shadowColor: '#000',
@@ -55,8 +53,5 @@ const styles = StyleSheet.create({
     width: "90%",
     fontSize: 16,
     marginRight: 4,
-  },
-  title: {
-    fontWeight: 'bold'
   }
 });
