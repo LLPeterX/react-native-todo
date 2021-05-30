@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button, Modal, Alert } from 'react-native';
+import { StyleSheet, View, TextInput, Modal, Alert } from 'react-native';
 import { THEME } from '../theme';
 import { AppButton } from './ui/AppButton';
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 export function EditModal({ visible, onClose, value, onSave }) {
   let [todoText, setTodoText] = useState(value);

@@ -1,7 +1,6 @@
 // блок добавления задачи
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
-import { THEME } from '../theme';
+import { StyleSheet, View, TextInput, Alert, Keyboard } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 export default function AddTodo({ onAddTodo }) {
@@ -14,6 +13,7 @@ export default function AddTodo({ onAddTodo }) {
     if (value.trim().length > 0) {
       onAddTodo(value);
       setValue("");
+      Keyboard.dismiss();
     } else {
       Alert.alert('Ошибка', 'Заполните поле ввода');
     }
@@ -29,7 +29,6 @@ export default function AddTodo({ onAddTodo }) {
           autoCapitalize='none'
           clearButtonMode='while-editing'
         />
-        {/* <Button title=" + " onPress={pressHandler} /> */}
         <Entypo.Button name="add-to-list" size={20} onPress={pressHandler}/>
       </View>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button, Alert } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import { EditModal } from '../components/EditModal';
 import { THEME } from '../theme';
 import { AppText } from '../components/ui/AppText'
@@ -63,7 +63,6 @@ export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // height: "50%",
     flexDirection: 'column',
     alignItems: 'flex-start'
   },
