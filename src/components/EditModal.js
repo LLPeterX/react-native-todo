@@ -35,14 +35,16 @@ export function EditModal({ visible, onClose, value, onSave }) {
           onChangeText={setTodoText}
         />
         <View style={styles.buttonsBlock}>
-          {/* <Button title="Отмена" color={THEME.GRAY_COLOR} onPress={onClose} /> */}
-          <AppButton color={THEME.GRAY_COLOR} onPress={onClose}>
-          <AntDesign name="stepbackward" size={24} />
-          </AppButton>
-          {/* <Button title="Сохранить" color={THEME.GREEN_COLOR} onPress={saveHandler}/> */}
-          <AppButton color={THEME.GREEN_COLOR} onPress={saveHandler}>
-            <AntDesign name="save" size={24}/>
-          </AppButton>
+          <View style={styles.button}>
+            <AppButton color={THEME.GRAY_COLOR} onPress={onClose}>
+              <AntDesign name="stepbackward" size={16} />
+            </AppButton>
+          </View>
+          <View style={styles.button}>
+            <AppButton color={THEME.GREEN_COLOR} onPress={saveHandler}>
+              <AntDesign name="save" size={16} />
+            </AppButton>
+          </View>
         </View>
       </View>
     </Modal>
@@ -68,5 +70,8 @@ const styles = StyleSheet.create({
     padding: 4,
     marginTop: 20
   },
+  button: {
+    width: "40%"
+  }
 
 });

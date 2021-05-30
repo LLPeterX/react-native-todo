@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, Dimensions } from 'react-native';
 import { EditModal } from '../components/EditModal';
 import { THEME } from '../theme';
 import { AppText } from '../components/ui/AppText'
@@ -47,16 +47,23 @@ export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
       />
       <AppText style={styles.text}>{todo.text}</AppText>
       <View style={styles.block}>
-        <AppButton color={THEME.GRAY_COLOR} onPress={onBack} >
-          <AntDesign name="stepbackward" size={24} /></AppButton>
-        <AppButton color={THEME.GREEN_COLOR} onPress={() => setModalVisible(true)}>
-          <AntDesign name="edit" size={24} />
-        </AppButton>
+        <View style={styles.button}>
+          <AppButton color={THEME.GRAY_COLOR} onPress={onBack} >
+            <AntDesign name="stepbackward" size={20} />
+          </AppButton>
+        </View>
+        <View style={styles.button}>
+          <AppButton color={THEME.GREEN_COLOR} onPress={() => setModalVisible(true)}>
+            <AntDesign name="edit" size={20} />
+          </AppButton>
+        </View>
+        <View style={styles.button}>
         <AppButton color={THEME.DANGER_COLOR} onPress={removeTodo}>
-          <AntDesign name="delete" size={24} />
+          <AntDesign name="delete" size={20} />
         </AppButton>
       </View>
     </View>
+    </View >
   );
 }
 
@@ -66,10 +73,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start'
   },
-  title: {
-    fontWeight: 'bold',
-    color: THEME.TEXT_COLOR
-  },
   block: {
     width: "100%",
     flexDirection: 'row',
@@ -78,7 +81,8 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   button: {
-    width: '30%'
+    //width: '30%'
+    width: Dimensions.get('window').width > 400 ? 150 : 100
   },
   text: {
     fontSize: 16
