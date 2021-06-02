@@ -8,10 +8,6 @@ import { AppText } from '../components/ui/AppText'
 
 export default function Todo({ todo, onOpen, onDelete }) {
   
-  // const pressHandler = () => {
-  //   console.log(`Press ${todo.id} - ${todo.text}`)
-  // };
-  
   return (
      <TouchableOpacity activeOpacity={0.5} 
     onLongPress={onDelete.bind(null, todo.id)}
