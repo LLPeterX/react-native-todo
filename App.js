@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react'
 import { MainLayout } from './src/MainLayout'
 import { TodoState } from './src/context/todo/TodoState'
-import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
- 
+import { ScreenState } from './src/context/screen/ScreenState'
+import * as Font from 'expo-font'
+import AppLoading from 'expo-app-loading'
+
+
 // for expo-app-loading
 async function loadApplication() {
   await Font.loadAsync({
@@ -15,19 +17,21 @@ async function loadApplication() {
 export default function App() {
   // state for app loading
   const [isReady, setReady] = useState(false);
-  
-  if(!isReady) {
-    return <AppLoading 
+
+  if (!isReady) {
+    return <AppLoading
       startAsync={loadApplication}
-      onError={(err)=>console.log(err)}
-      onFinish={()=>setReady(true)}
+      onError={(err) => console.log(err)}
+      onFinish={() => setReady(true)}
     />
   }
 
-  return ( 
-   <TodoState>
-     <MainLayout/>
-    </TodoState>
+  return (
+    <ScreenState>
+      <TodoState>
+        <MainLayout />
+      </TodoState>
+    </ScreenState>
   );
 }
 

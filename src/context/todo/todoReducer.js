@@ -14,6 +14,7 @@ const handlers = {
 
 
 export const todoReducer = (state, action) => {
+  console.log(`todoReducer: action=${action.type}`);
   const handler = handlers[action.type] || handlers.DEFAULT;
   return handler(state,action);
 }
