@@ -1,20 +1,19 @@
 import {ADD_TODO, DELETE_TODO, CHANGE_TODO} from '../actions'
+
+const handlers = {
+  [ADD_TODO]: (state, {text}) => ({...state, todos:[...state.todos, {id: Date.now().toString(), text}]}),
+  [DELETE_TODO]: (state, {id}) => ({...state, todos: state.todos.filter(item => item.id!=id)}),
+  [CHANGE_TODO]: (state, {id, text}) => ({...state, todos: state.todos.map(item => {
+    if(item.id === id) {
+      item.text = text;
+    }
+    return item;
+  })}),
+  DEFAULT: (state) => state
+};
+
+
 export const todoReducer = (state, action) => {
-  switch(action.type) {
-    case ADD_TODO:
-      return {...state, 
-        todos:[...state.todos, {id: Date.now().toString(), text: action.text}]
-      }
-    case DELETE_TODO:
-      return {...state, todos: state.todos.filter(item => item.id!=action.id)}
-    case CHANGE_TODO:
-      return {...state, todos: state.todos.map(item => {
-        if(item.id === action.id) {
-          item.text = action.text;
-        }
-        return item;
-      })}
-    default:
-      return state;      
-  }
+  const handler = handlers[action.type] || handlers.DEFAULT;
+  return handler(state,action);
 }
