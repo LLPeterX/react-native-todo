@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react';
-import { ADD_TODO, CHANGE_TODO, DELETE_TODO } from '../actions';
+import { ADD_TODO, CHANGE_TODO, CLEAR_ERROR, DELETE_TODO, HIDE_LOADER, SHOW_ERROR, SHOW_LOADER } from '../actions';
 import { ScreenContext } from '../screen/screenContext';
 import { TodoContext } from './todoContext'
 import { todoReducer } from './todoReducer'
@@ -8,13 +8,28 @@ import { Alert } from 'react-native'
 
 export const TodoState = ({ children }) => {
   const initialState = {
-    todos: [{ id: "1", text: "Первая строка" }]
+    todos: [],
+    isLoading: true,
+    error: null
   }
   const { changeScreen } = useContext(ScreenContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
-  const addTodo = (text) => dispatch({ type: ADD_TODO, text });
-  
+  const addTodo = async (text) => {
+    const resp = await fetch('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
+      {
+        method: 'POST',
+        body: JSON.stringify({text}), // передаем только text, без id
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    const data = await resp.json(); // получаем добавленный элемент, где name = новый id
+    console.log(data); 
+    dispatch({ type: ADD_TODO, text, id: data.name });
+  };
+
   const deleteTodo = (id) => {
     const todo = state.todos.find(item => item.id === id);
     Alert.alert('Удаление', // header
@@ -46,6 +61,12 @@ export const TodoState = ({ children }) => {
     changeScreen(null);
     dispatch({ type: CHANGE_TODO, id, text });
   }
+  // for database:
+
+  const showLoader = () => dispatch({ type: SHOW_LOADER });
+  const hideLoader = () => dispatch({ type: HIDE_LOADER });
+  const showError = (error) => dispatch({ type: SHOW_ERROR, error });
+  const clearError = () => dispatch({ type: CLEAR_ERROR });
 
   return <TodoContext.Provider value={
     {
