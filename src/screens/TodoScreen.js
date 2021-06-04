@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Alert, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { EditModal } from '../components/EditModal';
 import { THEME } from '../theme';
 import { AppText } from '../components/ui/AppText'
@@ -10,33 +10,11 @@ import { ScreenContext } from '../context/screen/screenContext';
 
 export default function TodoScreen() {
   let [modalVisible, setModalVisible] = useState(false);
-  const { todos, deleteTodo, changeTodo } = React.useContext(TodoContext);
+  const { todos, changeTodo, deleteTodo } = React.useContext(TodoContext);
   const { todoId, changeScreen } = React.useContext(ScreenContext);
   
   const todo =  todos.find(item => item.id === todoId);
   
-  const removeTodo = () => {
-    Alert.alert('Удаление', // header
-      'Вы желаете удалить эту задачу?', // text
-      // buttons Yes/No 
-      [
-        {
-          text: 'Да',
-          onPress: () => {
-            deleteTodo(todoId);
-          }
-        },
-        {
-          text: 'Нет'
-        }
-      ],
-      // options
-      {
-        cancelable: true
-      }
-    );
-  }
-
   const onSaveTodo = (text) => {
     changeTodo(todo.id, text);
     setModalVisible(false);
@@ -63,7 +41,7 @@ export default function TodoScreen() {
           </AppButton>
         </View>
         <View style={styles.button}>
-        <AppButton color={THEME.DANGER_COLOR} onPress={removeTodo}>
+        <AppButton color={THEME.DANGER_COLOR} onPress={()=>deleteTodo(todoId)}>
           <AntDesign name="delete" size={20} />
         </AppButton>
       </View>

@@ -7,20 +7,25 @@ import { AntDesign } from '@expo/vector-icons';
 export function EditModal({ visible, onClose, value, onSave }) {
   let [todoText, setTodoText] = useState(value);
 
-  function saveHandler() {
+  const saveHandler = () => {
     if (todoText && todoText.length) {
       onSave(todoText);
     } else {
       Alert.alert("Ошибка", "Не заполнен текст");
     }
-
   }
+
+  const cancelHandler = () => {
+    setTodoText(value)
+    onClose();
+  };
+
   return (
     <Modal
       visible={visible}
       animationType='fade'
       transparent={false}
-      onRequestClose={onClose}
+      onRequestClose={cancelHandler}
     >
       <View style={styles.wrapper}>
         <TextInput
@@ -36,7 +41,7 @@ export function EditModal({ visible, onClose, value, onSave }) {
         />
         <View style={styles.buttonsBlock}>
           <View style={styles.button}>
-            <AppButton color={THEME.GRAY_COLOR} onPress={onClose}>
+            <AppButton color={THEME.GRAY_COLOR} onPress={cancelHandler}>
               <AntDesign name="stepbackward" size={16} />
             </AppButton>
           </View>
