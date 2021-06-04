@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react';
-import { ADD_TODO, CHANGE_TODO, CLEAR_ERROR, DELETE_TODO, HIDE_LOADER, SHOW_ERROR, SHOW_LOADER } from '../actions';
+import { ADD_TODO, CHANGE_TODO, CLEAR_ERROR, DELETE_TODO, FETCH_TODOS, HIDE_LOADER, SHOW_ERROR, SHOW_LOADER } from '../actions';
 import { ScreenContext } from '../screen/screenContext';
 import { TodoContext } from './todoContext'
 import { todoReducer } from './todoReducer'
@@ -67,11 +67,21 @@ export const TodoState = ({ children }) => {
   const hideLoader = () => dispatch({ type: HIDE_LOADER });
   const showError = (error) => dispatch({ type: SHOW_ERROR, error });
   const clearError = () => dispatch({ type: CLEAR_ERROR });
+  const fetchTodos = async () => {
+    const resp = await fetch('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
+    {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    });
+    const data = await resp.json();
+    const todos = Object.keys(data).map(key => ({...data[key], id: key}));
+    dispatch({type: FETCH_TODOS, todos});
+  }
 
   return <TodoContext.Provider value={
     {
-      todos: state.todos,
-      addTodo, deleteTodo, changeTodo
+      todos: state.todos, isLoading: state.isLoading, error: state.error,
+      addTodo, deleteTodo, changeTodo, fetchTodos
     }
   }>
     {children}
