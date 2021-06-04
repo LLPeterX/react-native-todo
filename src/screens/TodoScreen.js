@@ -5,20 +5,25 @@ import { THEME } from '../theme';
 import { AppText } from '../components/ui/AppText'
 import { AppButton } from '../components/ui/AppButton';
 import { AntDesign } from '@expo/vector-icons';
+import { TodoContext } from '../context/todo/todoContext';
+import { ScreenContext } from '../context/screen/screenContext';
 
-export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
+export default function TodoScreen() {
   let [modalVisible, setModalVisible] = useState(false);
-
+  const { todos, deleteTodo, changeTodo } = React.useContext(TodoContext);
+  const { todoId, changeScreen } = React.useContext(ScreenContext);
+  
+  const todo =  todos.find(item => item.id === todoId);
+  
   const removeTodo = () => {
     Alert.alert('Удаление', // header
       'Вы желаете удалить эту задачу?', // text
-      // buttons Yes/No
+      // buttons Yes/No 
       [
         {
           text: 'Да',
           onPress: () => {
-            onDelete(todo.id);
-            onBack();
+            deleteTodo(todoId);
           }
         },
         {
@@ -33,7 +38,7 @@ export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
   }
 
   const onSaveTodo = (text) => {
-    onSave(todo.id, text);
+    changeTodo(todo.id, text);
     setModalVisible(false);
   }
 
@@ -48,7 +53,7 @@ export default function TodoScreen({ todo, onBack, onDelete, onSave }) {
       <AppText style={styles.text}>{todo.text}</AppText>
       <View style={styles.block}>
         <View style={styles.button}>
-          <AppButton color={THEME.GRAY_COLOR} onPress={onBack} >
+          <AppButton color={THEME.GRAY_COLOR} onPress={()=>changeScreen(null)} >
             <AntDesign name="stepbackward" size={20} />
           </AppButton>
         </View>
