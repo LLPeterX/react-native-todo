@@ -2,6 +2,8 @@ import React, {useContext, useEffect, useCallback} from 'react';
 import { StyleSheet, View, FlatList,Image} from 'react-native';
 import AddTodo from '../components/AddTodo'
 import Todo from '../components/Todo'
+import { AppError } from '../components/ui/AppError';
+import { AppLoader } from '../components/ui/AppLoader';
 import { ScreenContext } from '../context/screen/screenContext';
 import { TodoContext } from '../context/todo/todoContext';
 
@@ -15,6 +17,14 @@ export default function MainScreen() {
   useEffect(()=> {
     loadTodos();  
   },[]);
+
+  if(error) {
+    return <AppError error={error} reload={loadTodos}/>
+  }
+  
+  if(isLoading) {
+    return <AppLoader/>
+  }
 
   let content = <FlatList
   style={styles.list}

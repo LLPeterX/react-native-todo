@@ -19,14 +19,14 @@ export const TodoState = ({ children }) => {
     const resp = await fetch('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
       {
         method: 'POST',
-        body: JSON.stringify({text}), // передаем только text, без id
+        body: JSON.stringify({ text }), // передаем только text, без id
         headers: {
           'Content-Type': 'application/json'
         }
       }
     );
     const data = await resp.json(); // получаем добавленный элемент, где name = новый id
-    console.log(data); 
+    console.log(data);
     dispatch({ type: ADD_TODO, text, id: data.name });
   };
 
@@ -67,16 +67,26 @@ export const TodoState = ({ children }) => {
   const hideLoader = () => dispatch({ type: HIDE_LOADER });
   const showError = (error) => dispatch({ type: SHOW_ERROR, error });
   const clearError = () => dispatch({ type: CLEAR_ERROR });
+
   const fetchTodos = async () => {
-    const resp = await fetch('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
-    {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
-    });
-    const data = await resp.json();
-    const todos = Object.keys(data).map(key => ({...data[key], id: key}));
-    dispatch({type: FETCH_TODOS, todos});
-  }
+    showLoader();
+    clearError();
+    try {
+      const resp = await fetch('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
+        {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' }
+        });
+      const data = await resp.json();
+      const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
+      dispatch({ type: FETCH_TODOS, todos });
+    } catch (e) {
+      showError('Ошибка обращения к серверу');
+      console.log(e);
+    } finally {
+      hideLoader();
+    }
+  };
 
   return <TodoContext.Provider value={
     {
