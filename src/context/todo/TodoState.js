@@ -28,7 +28,7 @@ export const TodoState = ({ children }) => {
     // );
     // const data = await resp.json(); // получаем добавленный элемент, где name = новый id
     // console.log(data);
-    const data = await Http.post('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',text);
+    const data = await Http.post('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',{text});
     dispatch({ type: ADD_TODO, text, id: data.name });
   };
 
@@ -43,9 +43,6 @@ export const TodoState = ({ children }) => {
           style: 'destructive',
           onPress: async () => {
             changeScreen(null);
-            // await fetch(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`,
-            //   { method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
-            // );
             await Http.delete(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`);
             dispatch({ type: DELETE_TODO, id });
           }
@@ -66,14 +63,7 @@ export const TodoState = ({ children }) => {
   const changeTodo = async (id, text) => {
     clearError();
     try {
-      // await fetch(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`,
-      //   {
-      //     method: 'PATCH', // PATCH меняет один элемент объекта, а POST - все
-      //     body: JSON.stringify({ text }),
-      //     headers: { 'Content-Type': 'application/json' }
-      //   }
-      // );
-      await Http.patch(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`);
+      await Http.patch(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`,{text});
       dispatch({ type: CHANGE_TODO, id, text });
     } catch (e) {
       showError('Ошибка сервера');
@@ -90,15 +80,12 @@ export const TodoState = ({ children }) => {
     showLoader();
     clearError();
     try {
-      // const resp = await fetch('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json',
-      //   {
-      //     method: 'GET',
-      //     headers: { 'Content-Type': 'application/json' }
-      //   });
-      // const data = await resp.json();
       const data = await Http.get('https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos.json');
-      const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
-      dispatch({ type: FETCH_TODOS, todos });
+//      console.log(data);
+      if (data) {
+        const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
+        dispatch({ type: FETCH_TODOS, todos });
+      }
     } catch (e) {
       showError('Ошибка обращения к серверу');
       console.log(e);
