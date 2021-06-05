@@ -40,8 +40,11 @@ export const TodoState = ({ children }) => {
         {
           text: 'Да',
           style: 'destructive',
-          onPress: () => {
+          onPress: async () => {
             changeScreen(null);
+            await fetch(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`,
+              { method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
+            );
             dispatch({ type: DELETE_TODO, id });
           }
         },
@@ -64,7 +67,7 @@ export const TodoState = ({ children }) => {
       await fetch(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`,
         {
           method: 'PATCH', // PATCH меняет один элемент объекта, а POST - все
-          body: JSON.stringify({ text }), 
+          body: JSON.stringify({ text }),
           headers: { 'Content-Type': 'application/json' }
         }
       );
