@@ -11,7 +11,8 @@ export const TodoState = ({ children }) => {
     todos: [],
     isLoading: true,
     error: null
-  }
+  };
+
   const { changeScreen } = useContext(ScreenContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
@@ -57,11 +58,22 @@ export const TodoState = ({ children }) => {
 
   }
 
-  const changeTodo = (id, text) => {
-    changeScreen(null);
-    dispatch({ type: CHANGE_TODO, id, text });
+  const changeTodo = async (id, text) => {
+    clearError();
+    try {
+      await fetch(`https://sample-todo-app-d319e-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`,
+        {
+          method: 'PATCH', // PATCH меняет один элемент объекта, а POST - все
+          body: JSON.stringify({ text }), 
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+      dispatch({ type: CHANGE_TODO, id, text });
+    } catch (e) {
+      showError('Ошибка сервера');
+      console.log(e);
+    }
   }
-  // for database:
 
   const showLoader = () => dispatch({ type: SHOW_LOADER });
   const hideLoader = () => dispatch({ type: HIDE_LOADER });

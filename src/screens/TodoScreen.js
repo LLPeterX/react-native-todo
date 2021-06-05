@@ -15,8 +15,8 @@ export default function TodoScreen() {
   
   const todo =  todos.find(item => item.id === todoId);
   
-  const onSaveTodo = (text) => {
-    changeTodo(todo.id, text);
+  const onSaveTodo = async (text) => {
+    await changeTodo(todo.id, text);
     setModalVisible(false);
   }
 
